@@ -5,6 +5,7 @@ const config = require("./config.js");
 const baseWebpackConfig = require('./webpack.base.conf');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 module.exports = merge(baseWebpackConfig, {
 	devServer: {
 	    port: config.dev.port,
@@ -15,6 +16,17 @@ module.exports = merge(baseWebpackConfig, {
 	    proxy: config.proxy
 	},
 	plugins:[
+		new CopyPlugin({
+		      patterns: [
+		        {
+					from: resolve('./../static'),
+					to: resolve('./../dist/'),
+					globOptions: {
+					        ignore: ['*'],
+					    },
+				},
+		      ],
+		    }),
 		new HtmlWebpackPlugin({
 			template:resolve("./../index.html"),
 			inject: true,

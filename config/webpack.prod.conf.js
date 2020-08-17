@@ -16,7 +16,7 @@ module.exports = merge(baseWebpackConfig, {
 		      patterns: [
 		        {
 					from: resolve('./../static'),
-					to: resolve('./../dist/static/'),
+					to: resolve('./../dist/'),
 					globOptions: {
 					        ignore: ['*'],
 					    },
